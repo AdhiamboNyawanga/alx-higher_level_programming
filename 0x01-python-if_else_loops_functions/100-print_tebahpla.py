@@ -1,3 +1,8 @@
 #!/usr/bin/python3
-print("".join(['{:c}'.format(c-32 if c % 2 else c)
-               for c in range(122, 96, -1)]), end="")
+for index in range(0, 26):
+    word = ord('z') - index
+    if (index % 2 == 1):
+        word = chr(word - ord('a') + ord('A'))
+    else:
+        word = chr(word)
+    print("{}".format(word), end='')
