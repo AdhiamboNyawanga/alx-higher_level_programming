@@ -1,16 +1,11 @@
 #!/usr/bin/python3
-"""A  script that:
-- takes in a URL and an email address
-- sends a POST request to the passed URL with the email as a parameter
-- displays the body of the response.
 """
-import sys
-import requests
-
-
+    Python script that takes in a URL
+"""
 if __name__ == "__main__":
-    url = sys.argv[1]
-    value = {"email": sys.argv[2]}
+    import requests
+    import sys
 
-    r = requests.post(url, data=value)
+    dic = {'email': sys.argv[2]}
+    r = requests.post(sys.argv[1], data=dic)
     print(r.text)
