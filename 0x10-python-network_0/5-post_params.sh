@@ -1,3 +1,3 @@
 #!/bin/bash
-# Pass two varibles in post method
-curl -s "$1" -X POST -d "email=test@gmail.com" -d "subject=I will always be here for PLD"
+# takes in a URL, sends a POST request to the passed URL, and displays the body of the response
+curl -sd "email=hr@holbertonschool.com&subject=I%20will%20always%20be%20here%20for%20PLD" "$1"
