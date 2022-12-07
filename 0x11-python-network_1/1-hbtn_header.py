@@ -1,11 +1,14 @@
 #!/usr/bin/python3
-"""
-     Python script that takes in a URL, sends a request to the URL and displays
-"""
+"""Fetches header"""
+import urllib.request
+import sys
+
+
+def fetcher():
+    """fetcher"""
+    with urllib.request.urlopen(sys.argv[1]) as response:
+        header = response.info()
+        print(header["X-Request-Id"])
 
 if __name__ == "__main__":
-    import urllib.request
-    import sys
-
-    with urllib.request.urlopen(sys.argv[1]) as response:
-        print(response.info().get("X-Request-Id"))
+    fetcher()

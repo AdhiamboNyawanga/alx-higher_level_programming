@@ -1,21 +1,26 @@
 #!/usr/bin/python3
-"""python package request"""
-if __name__ == "__main__":
-    import requests
-    import sys
+"""Check status"""
+import requests
+import sys
 
+
+def searchapi():
+    """status"""
     if len(sys.argv) == 1:
-        dic = {'q': ""}
+        q = ""
     else:
-        dic = {'q': sys.argv[1]}
+        q = sys.argv[1]
+
+    result = requests.post("http://0.0.0.0:5000/search_user", data={"q": q})
 
     try:
-        r = requests.post('http://0.0.0.0:5000/search_user', data=dic)
-        data = r.json()
-
+        data = result.json()
         if data:
-            print("[{}] {}".format(data.get('id'), data.get('name')))
+            print("[{}] {}".format(data["id"], data["name"]))
         else:
             print("No result")
-    except ValueError:
+    except:
         print("Not a valid JSON")
+
+if __name__ == "__main__":
+    searchapi()

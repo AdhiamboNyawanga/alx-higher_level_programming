@@ -1,14 +1,15 @@
 #!/usr/bin/python3
+"""Check status"""
+import requests
 
-"""
-    Python script that fetches https://alx-intranet.hbtn.io/status
 
-"""
+def status():
+    """status"""
+    result = requests.get("https://intranet.hbtn.io/status")
+
+    print("Body response:")
+    print("\t- type: {}".format(type(result.text)))
+    print("\t- content: {}".format(result.text))
 
 if __name__ == "__main__":
-    import requests
-
-    r = requests.get('https://intranet.hbtn.io/status')
-    print("Body response:")
-    print("\t- type: {}".format(type(r.text)))
-    print("\t- content: {}".format(r.text))
+    status()
