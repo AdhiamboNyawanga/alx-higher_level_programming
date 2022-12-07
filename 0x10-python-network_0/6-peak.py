@@ -1,23 +1,28 @@
 #!/usr/bin/python3
-"""task 6 modele"""
+"""Find the peak in an array"""
+
+
+def FindAPeak(arr, i, j):
+    """Binary Search"""
+    mid = int((i + j) / 2)
+    # if mid element is peak
+    if (mid == len(arr)-1 or arr[mid] >= arr[mid+1]) and\
+       (mid == 0 or arr[mid] >= arr[mid-1]):
+        return arr[mid]
+    # when your peak exists in the right half
+    if arr[mid] < arr[mid+1] and mid+1 < len(arr):
+        return FindAPeak(arr, mid+1, j)
+    # when your peak exists in the left half
+    else:
+        return FindAPeak(arr, i, mid-1)
 
 
 def find_peak(list_of_integers):
-    """Return a peak in a list of unsorted integers."""
-    if list_of_integers == []:
+    """Pass to the list"""
+    l_peak = list_of_integers
+
+    if len(l_peak) == 0:
         return None
 
-    size = len(list_of_integers)
-    if size == 1:
-        return list_of_integers[0]
-    elif size == 2:
-        return max(list_of_integers)
-
-    mid = int(size / 2)
-    peak = list_of_integers[mid]
-    if peak > list_of_integers[mid - 1] and peak > list_of_integers[mid + 1]:
-        return peak
-    elif peak < list_of_integers[mid - 1]:
-        return find_peak(list_of_integers[:mid])
-    else:
-        return find_peak(list_of_integers[mid + 1:])
+    peak = FindAPeak(l_peak, 0, len(l_peak) - 1)
+    return peak
